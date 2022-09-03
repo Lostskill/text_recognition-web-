@@ -1,0 +1,22 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <body>
+        <title>Компьютерное зрение</title>
+        <div>
+            <form method="post" enctype="multipart/form-data" action="{% url 'main' %}">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">UpLoad</button>
+            </form>
+        </div>
+        <div>
+            {% if image_text %}
+            <p>Succesfully {{ image_text }}</p>
+            <img src="{% static 'main/images/need_pic.png' %}"/>
+            
+            {% endif %}
+        </div>
+    </body>
+</html>
