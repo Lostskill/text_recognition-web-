@@ -11,7 +11,7 @@ def image_upload(request):
         form = ImageForm(request.POST,request.FILES)
         if form.is_valid():
             image = Image.open(request.FILES['file_upload'])
-            image_text = pytesseract.image_to_string(image)
+            image_text = pytesseract.image_to_string(image,lang='rus')
             image_picture = handle_uploaded_file(request.FILES['file_upload'])
 
             
@@ -31,7 +31,6 @@ def handle_uploaded_file(f):
         for chunk in f.chunks() :
             destination.write(chunk)
     
-    #f = open('need_pic.png','r')
-    #return f 
+
 
     

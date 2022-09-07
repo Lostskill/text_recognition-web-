@@ -3,20 +3,31 @@
 <!DOCTYPE html>
 <html>
     <body>
-        <title>Компьютерное зрение</title>
-        <div>
-            <form method="post" enctype="multipart/form-data" action="{% url 'main' %}">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit">UpLoad</button>
-            </form>
-        </div>
-        <div>
-            {% if image_text %}
-            <p>Succesfully {{ image_text }}</p>
-            <img src="{% static 'main/images/need_pic.png' %}"/>
-            
-            {% endif %}
+        <head>    
+            <title>Компьютерное зрение</title>
+            <link type="text/css" href="{% static 'main/css/style.css' %}" rel="stylesheet"/>
+        </head>
+        <div class="main_content">    
+            <section class="top_section">
+                <div class="top_form">  
+                    <div class="form_load">
+                        <form method="post" enctype="multipart/form-data" action="{% url 'main' %}">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <button type="submit">Загрузить</button>
+                        </form>
+                    </div>
+                
+                    <div class="main_info">
+                        {% if image_text %}
+                        <p class="text_of_picture">Текст: {{ image_text }}</p>
+                        <div class="picture">
+                            <img class="picture_" src="{% static 'main/images/need_pic.png' %}"/>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </section>
         </div>
     </body>
 </html>
