@@ -11,9 +11,12 @@ def image_upload(request):
         form = ImageForm(request.POST,request.FILES)
         if form.is_valid():
             image = Image.open(request.FILES['file_upload'])
-            image_text = pytesseract.image_to_string(image,lang='rus')
+            language = form.cleaned_data.get('lang')
+            print(language)
+            image_text = pytesseract.image_to_string(image,lang=language)
+            
             image_picture = handle_uploaded_file(request.FILES['file_upload'])
-
+            
             
             context.update({'image_text':image_text,'image_pic':image_picture })
             
